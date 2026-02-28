@@ -42,12 +42,16 @@ class UiApp:
 
     def generate_music(self):
         if st.button("Create Music"):
-            progress_text = f"Creating Music for {self.chosen_message}"
-            music_bar = st.progress(0, text=progress_text)
+            if self.chosen_message:
+                progress_text = f"Creating Music for {self.chosen_message}"
+                music_bar = st.progress(0, text=progress_text)
 
-            for music in range(100):
-                time.sleep(0.2)
-                music_bar.progress(music + 1, text=progress_text)
-            time.sleep(1)
-            st.success("Successfully generated music 🎶")
-            return True
+                for music in range(100):
+                    time.sleep(0.2)
+                    music_bar.progress(music + 1, text=progress_text)
+                time.sleep(1)
+                st.success("Successfully generated music 🎶")
+                return True
+            else:
+                st.warning("Message is empty")
+                return False
