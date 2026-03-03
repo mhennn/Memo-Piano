@@ -26,7 +26,6 @@ class NoteProcess:
             silence = np.zeros(int(self.sample_rate * self.time_delay))
             audio_buffer.extend(silence)
 
-        # 2. Convert Text to Sine Waves
         for char in text.upper():
             if char in self.NOTE_MAP:
                 freq = self.midi_to_freq(self.NOTE_MAP[char])
