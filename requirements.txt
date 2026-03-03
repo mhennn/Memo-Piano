@@ -1,2 +1,3 @@
 midiutil
 Streamlit
+scipy

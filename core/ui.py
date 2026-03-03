@@ -28,13 +28,14 @@ class UiApp:
             with note_field[1]:
                 self.chosen_duration = st.number_input("Duration", key="duration_key", min_value=1.0, max_value=100.0, step=0.1)
             with note_field[2]:
-                self.chosen_volume = st.number_input("Volume", key="volume_key", min_value=1, max_value=127, value=100, help="default: 100")
+                self.chosen_volume = st.number_input("Volume", key="volume_key", min_value=0.0, max_value=100.0, value=100.0, help="default: 100.0")
 
             self.chosen_message = st.text_area("Write your message", key="message_key")
             if self.generate_music():
                 note_process = self.translate_message()
-                midi_data = note_process.create_music(self.chosen_message)
-                st.download_button("Download Music", data=midi_data, mime="audio/midi", file_name=f"{self.chosen_message}.midi")
+                wav_data = note_process.create_music_wav(self.chosen_message)
+                st.audio(wav_data, format="audio/wav")
+                st.download_button("Download Music", data=wav_data, mime="audio/wav", file_name=f"{self.chosen_message}.wav")
 
     def translate_message(self):
         self.noteProcess = NoteProcess(self.chosen_time, self.chosen_duration, self.chosen_volume)
