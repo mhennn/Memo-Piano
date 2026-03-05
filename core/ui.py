@@ -51,7 +51,9 @@ class UiApp:
                     time.sleep(0.2)
                     music_bar.progress(music + 1, text=progress_text)
                 time.sleep(1)
-                st.success("Successfully generated music 🎶")
+                st.toast("Successfully generated music 🎶", icon="🎧", duration="short")
+                time.sleep(1)
+                st.toast("Ready for download", icon="🔻")
                 return True
             else:
                 st.warning("Message is empty")
